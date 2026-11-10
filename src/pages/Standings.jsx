@@ -27,13 +27,34 @@ function Standings() {
         {loading ? (
             <p>Loading...</p>
         ) : (
-            <ol>
-                {standing.map((team) => (
-                    <li key={team.team.id}>
-                        {team.team.name} - {team.points} points
-                    </li>
-                ))}
-            </ol>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Position</th>
+                        <th></th>
+                        <th>Team</th>
+                        <th>Points</th>
+                        <th>Matches</th>
+                        <th>W</th>
+                        <th>D</th>
+                        <th>L</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {standing.map((team) => (
+                        <tr key={team.team.id}>
+                            <td>{team.position}</td>
+                            <td><img src={team.team.crest} alt={team.team.name} width="20" /></td>
+                            <td>{team.team.name}</td>
+                            <td>{team.points}</td>
+                            <td>{team.playedGames}</td>
+                            <td>{team.won}</td>
+                            <td>{team.draw}</td>
+                            <td>{team.lost}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
         )}
         </>
     )
