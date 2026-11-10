@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-
+// dynamic stuff so we need state to update scorers list and effect to fetch data from API
 function TopScorers() {
     const [scorers, setScorers] = useState([]);
     const [loading, setLoading] = useState(true);
