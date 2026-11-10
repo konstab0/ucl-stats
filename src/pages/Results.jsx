@@ -30,9 +30,9 @@ function Results(){
             <p>Loading...</p>
         ) : (
             <ul>
-                {results.map((match) => (
+                {results.slice(-10).reverse().map((match) => (
                     <li key={match.id}>
-                        {match.homeTeam.name} {match.score.fullTime.home} - {match.score.fullTime.away} {match.awayTeam.name}
+                        {match.homeTeam.name} {match.score.fullTime.home} - {match.score.fullTime.away} {match.awayTeam.name} ({new Date(match.utcDate).toLocaleDateString()})
                     </li>
                 ))}
             </ul>
