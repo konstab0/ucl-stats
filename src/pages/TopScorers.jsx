@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
-// dynamic stuff so we need state to update scorers list and effect to fetch data from API
+import { fetchWithCache } from "../cache.js";
+// dynamic stuff so we need useState to update scorers list and effect to fetch data from API
+
 function TopScorers() {
     const [scorers, setScorers] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -8,12 +10,11 @@ function TopScorers() {
         const fetchTopScorers = async () => {
             try{
                 //fetch
-                const response = await fetch("/api/v4/competitions/2001/scorers", {
+                const data = await fetchWithCache("/api/v4/competitions/2001/scorers", {
                     // the API requires a HTTP header with the auth token (to enforce the limits of using the API)
                     headers: {'X-Auth-Token': import.meta.env.VITE_FOOTBALL_API_TOKEN}
                 });
-                const data = await response.json();
-                // API wraps the scorers in a "scorers" array
+                // set the scorers state with the fetched data
                 setScorers(data.scorers);
                 
             } catch (error) {

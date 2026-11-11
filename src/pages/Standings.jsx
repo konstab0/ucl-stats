@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { fetchWithCache } from "../cache.js";
 
 function Standings() {
     const [standing, setStanding] = useState([]);
@@ -7,10 +8,10 @@ function Standings() {
     useEffect(() => {
         const fetchStandings = async () => {
             try {
-                const response = await fetch("/api/v4/competitions/2001/standings", {
+                const data = await fetchWithCache("/api/v4/competitions/2001/standings", {
                     headers: {'X-Auth-Token': import.meta.env.VITE_FOOTBALL_API_TOKEN}
                 });
-                const data = await response.json();
+                // set the standing state with the fetched data
                 setStanding(data.standings[0].table);
             } catch (error) {
                 console.error("Failed to fetch standings:", error);
