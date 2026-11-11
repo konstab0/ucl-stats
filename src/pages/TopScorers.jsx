@@ -8,19 +8,19 @@ function TopScorers() {
 
     useEffect(() => {
         const fetchTopScorers = async () => {
-            try{
+            try {
                 //fetch
                 const data = await fetchWithCache("/api/v4/competitions/2001/scorers", {
                     // the API requires a HTTP header with the auth token (to enforce the limits of using the API)
-                    headers: {'X-Auth-Token': import.meta.env.VITE_FOOTBALL_API_TOKEN}
+                    headers: { 'X-Auth-Token': import.meta.env.VITE_FOOTBALL_API_TOKEN }
                 });
                 // set the scorers state with the fetched data
                 setScorers(data.scorers);
-                
+
             } catch (error) {
                 console.error("Failed to fetch top scorers:", error);
-                
-            } finally{
+
+            } finally {
                 setLoading(false);
             }
         };
@@ -29,18 +29,35 @@ function TopScorers() {
 
     return (
         <>
-        <h1>Top Scorers</h1>
-        {loading ? (
-            <p>Loading...</p>
-        ) : (
-            <ol>
-                {scorers.map((scorer) => (
-                    <li key={scorer.player.id}>
-                        {scorer.player.name} - {scorer.goals} goals
-                    </li>
-                ))}
-            </ol>
-        )}
+            <h1>Top Scorers</h1>
+            {loading ? (
+                <p>Loading...</p>
+            ) : (
+                <div>
+                    {scorers.map((scorer) => (
+                        <div className="card bg-dark text-light mb-3" key={scorer.player.id}>
+                            <div className="card-body d-flex align-items-center gap-3">
+                                {scorer.team.crest && (
+                                    <img
+                                        src={scorer.team.crest}
+                                        alt=""
+                                        width="48"
+                                        height="48"
+                                        className="object-fit-contain"
+                                    />
+                                )}
+
+                                <div className="flex-grow-1">
+                                    <h2 className="h5 mb-1">{scorer.player.name}</h2>
+                                    <div>{scorer.team.name}</div>
+                                </div>
+
+                                <div className="fw-bold">{scorer.goals} goals</div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            )}
         </>
     )
 }

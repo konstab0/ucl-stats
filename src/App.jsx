@@ -10,11 +10,13 @@ import TopScorers from "./pages/TopScorers";
 function App() {
   return (
     <BrowserRouter>
-      <h1>UCL Stats</h1>
-      <nav>
-        <Link to="/results">Results</Link> |{" "}
-        <Link to="/standings">Standings</Link> |{" "}
-        <Link to="/top-scorers">Top Scorers</Link>
+      <nav className="navbar bg-dark px-3" data-bs-theme="dark">
+        <Link className="navbar-brand" to="/">UCL Stats</Link>
+        <div className="d-flex flex-wrap gap-3">
+          <Link className="nav-link" to="/results">Results</Link>
+          <Link className="nav-link" to="/standings">Standings</Link>
+          <Link className="nav-link" to="/top-scorers">Top Scorers</Link>
+        </div>
       </nav>
       <Routes>
         <Route path="/" element={<Results />} />
@@ -26,4 +28,4 @@ function App() {
   )
 }
 export default App;
-  
+
