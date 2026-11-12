@@ -8,9 +8,7 @@ function Standings() {
     useEffect(() => {
         const fetchStandings = async () => {
             try {
-                const data = await fetchWithCache("/api/v4/competitions/2001/standings", {
-                    headers: {'X-Auth-Token': import.meta.env.VITE_FOOTBALL_API_TOKEN}
-                });
+                const data = await fetchWithCache("/v4/competitions/2001/standings");
                 // set the standing state with the fetched data
                 setStanding(data.standings[0].table);
             } catch (error) {

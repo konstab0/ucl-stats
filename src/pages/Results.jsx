@@ -11,9 +11,7 @@ function Results() {
             try {
                 // returns already existing cache or fetches from API and saves it in the cache
                 // also im calling the variable "data" because its already parsed from the response inside the fetchWithCache function
-                const data = await fetchWithCache("/api/v4/competitions/2001/matches?status=FINISHED", {
-                    headers: { 'X-Auth-Token': import.meta.env.VITE_FOOTBALL_API_TOKEN }
-                });
+                const data = await fetchWithCache("/v4/competitions/2001/matches?status=FINISHED");
                 // set the results state with the fetched data
                 setResults(data.matches);
             } catch (error) {

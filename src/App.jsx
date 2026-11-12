@@ -1,4 +1,4 @@
-import { BrowserRouter } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 import { Routes, Route } from "react-router-dom";
 import { Link } from "react-router-dom";
 
@@ -9,7 +9,8 @@ import TopScorers from "./pages/TopScorers";
 
 function App() {
   return (
-    <BrowserRouter>
+    // Using HashRouter to support GitHub Pages deployment
+    <HashRouter>
       <nav className="navbar bg-dark px-3" data-bs-theme="dark">
         <Link className="navbar-brand" to="/">UCL Stats</Link>
         <div className="d-flex flex-wrap gap-3">
@@ -24,7 +25,7 @@ function App() {
         <Route path="/standings" element={<Standings />} />
         <Route path="/top-scorers" element={<TopScorers />} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   )
 }
 export default App;

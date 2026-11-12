@@ -10,10 +10,7 @@ function TopScorers() {
         const fetchTopScorers = async () => {
             try {
                 //fetch
-                const data = await fetchWithCache("/api/v4/competitions/2001/scorers", {
-                    // the API requires a HTTP header with the auth token (to enforce the limits of using the API)
-                    headers: { 'X-Auth-Token': import.meta.env.VITE_FOOTBALL_API_TOKEN }
-                });
+                const data = await fetchWithCache("/v4/competitions/2001/scorers");
                 // set the scorers state with the fetched data
                 setScorers(data.scorers);
 
