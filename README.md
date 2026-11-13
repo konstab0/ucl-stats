@@ -24,6 +24,6 @@ npm install
 3. Start the development server:
 ```bash
 npm run dev
-```bash
+```
 
 4. Open the link in your browser
